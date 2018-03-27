@@ -5,7 +5,7 @@ export default function Character(props) {
   
   // This is returning the character object (or person object) based on the id that we are getting from the url through the params object
 
-  const character = getCharacter(props.match.params.id)
+  const character = getCharacter(props.match.params.personId)
 
   // We are rendering the character object below
   
