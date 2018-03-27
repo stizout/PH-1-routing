@@ -12,22 +12,34 @@ class App extends Component {
     return (
       <div>
         <nav>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/people">People</Link>
+          <a href="#/">Home</a>
+          <a href="#/about">About</a>
         </nav>
         This is App.js
-        <Route exact path="/" component={Home} />
-        <Route path="/about" render={() => <About>
-          <Route path="/about/faq" component={FAQ} />
-          <Route path="/about/company" component={Company} />
-        </About>} />
-        <Switch>
-          <Route path="/people/:personId" component={Character} />
-          <Route path="/people" component={People} />
-        </Switch>
+        <MyRoute path="/" MyComponent={Home} />
+        <MyRoute path="/about" MyComponent={About} />
       </div>
     );
+  }
+}
+
+class MyRoute extends Component {
+  constructor() {
+    super()
+    this.state = {
+      url: '',
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('hashchange', event => {
+      this.setState({ url: event.newURL })
+    })
+  }
+
+  render() {
+    const MyComponent = this.props.MyComponent
+    return this.state.url.endsWith(this.props.path) ? <MyComponent /> : null
   }
 }
 
