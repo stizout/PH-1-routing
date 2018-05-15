@@ -11,6 +11,3 @@ export default function About(props) {
     </div>
   )
 }
-
-
-<Button>my button text</Button>
